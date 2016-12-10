@@ -8,8 +8,7 @@ if ! git diff-index --quiet HEAD --; then
         printf "#\t%s\n" $i >> gitmsg
     done
     nano gitmsg
-    GIT_MSG=./gitmsg
-    git commit -F $(GITMSG)
+    git commit -F gitmsg
     git pull --no-commit
     git push
     rm gitmsg

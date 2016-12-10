@@ -6,7 +6,13 @@ import pygame
 #set up screen
 pygame.init()
 screen = pygame.display.set_mode((320, 480))
+done = False
 
+while not done:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            done = True
+    
 
 # a test comment left in the code; should remove
 print "Dollop OS Testing Git or Whatevs"
