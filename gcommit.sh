@@ -5,11 +5,14 @@ if ! git diff-index --quiet HEAD --; then
     sleep 2
     printf "#Git Files Being Committed:\n" > gitmsg
     for i in $(git diff --name-only); do
-        printf "#\t%s\n" $i > gitmsg
+        printf "#\t%s\n" $i >> gitmsg
     done
     nano gitmsg
     git commit -m gitmsg
-    git pull --no-commit && git push
+    git stash
+    git pull --no-commit
+    git stash pop
+    git push
     printf "Finished commiting and merging of repo.\n"
 else
     printf "There's nothing to commit, so make some changes to commitable files or make sure they're not being ignored%s\n" "!"
