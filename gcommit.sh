@@ -16,7 +16,7 @@ else
     printf "." && sleep 1 && printf "." && sleep 1 && printf ".\n" && sleep 1
     printf "But, even if there's nothing to commit, we're going to still attempt a merge%s\n" "!"
     if git merge; then
-        printf "Finished merging of repo.\n"
+        printf "Finished merging of repo or nothing to merge anyways.\n"
     else
         printf "Merge somehow errored.\n"
     fi
