@@ -8,7 +8,7 @@ if ! git diff-index --quiet HEAD --; then
     done
     nano gitmsg
     git commit -m gitmsg
-    git merge
+    git pull && git push
     printf "Finished commiting and merging of repo.\n"
 else
     printf "There's nothing to commit, so make some changes to commitable files or make sure they're not being ignored!\n"
