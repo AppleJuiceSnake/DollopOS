@@ -16,7 +16,7 @@ if ! git diff-index --quiet HEAD --; then
     rm gitmsg
     printf "Finished commiting and merging of repo.\n All done."
 	sleeptime=10
-	sleep
+	
 else
     printf "There's nothing to commit, so make some changes to commitable files or make sure they're not being ignored%s\n" "!"
     printf "." && sleep 1 && printf "." && sleep 1 && printf ".\n" && sleep 1
@@ -29,4 +29,4 @@ else
 fi
 
 sleeptime=10
-sleep
+sleep $sleeptime
