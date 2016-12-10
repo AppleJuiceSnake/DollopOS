@@ -4,7 +4,7 @@ if ! git diff-index --quiet HEAD --; then
     sleep 2
     printf "#Git Files Being Committed:\n" > gitmsg
     for i in $(git diff --name-only); do
-        printf "\#\t%s\n" "$i"
+        printf "#\t%s\n" "$i"
     done
     nano gitmsg
     git commit -m gitmsg
