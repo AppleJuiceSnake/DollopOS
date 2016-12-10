@@ -1,4 +1,4 @@
-git add .
+git add ./
 if ! git diff-index --quiet HEAD --; then
     printf "Please write the git commit message.\n"
     rm gitmsg
@@ -8,11 +8,11 @@ if ! git diff-index --quiet HEAD --; then
         printf "#\t%s\n" $i >> gitmsg
     done
     nano gitmsg
-    git commit -m gitmsg
-    git stash
+    GIT_MSG=./gitmsg
+    git commit -F $(GITMSG)
     git pull --no-commit
-    git stash pop
     git push
+    rm gitmsg
     printf "Finished commiting and merging of repo.\n"
 else
     printf "There's nothing to commit, so make some changes to commitable files or make sure they're not being ignored%s\n" "!"
