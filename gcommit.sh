@@ -14,7 +14,7 @@ if ! git diff-index --quiet HEAD --; then
     git pull --no-commit
     git push
     rm gitmsg
-    printf "Finished commiting and merging of repo.\n"
+    printf "Finished commiting and merging of repo.\n All done."
 else
     printf "There's nothing to commit, so make some changes to commitable files or make sure they're not being ignored%s\n" "!"
     printf "." && sleep 1 && printf "." && sleep 1 && printf ".\n" && sleep 1
@@ -25,3 +25,6 @@ else
         printf "Merge somehow errored.\n"
     fi
 fi
+
+sleeptime=10
+sleep
