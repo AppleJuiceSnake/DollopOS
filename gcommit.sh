@@ -2,11 +2,13 @@ git add ./
 if ! git diff-index --quiet HEAD --; then
     printf "Please write the git commit message.\n"
     rm gitmsg
-    sleep 2
-    printf "#Git Files Being Committed:\n" > gitmsg
+    printf "Committing these files:\n"
+    sleepingtime=2
     for i in $(git diff --name-only); do
-        printf "#\t%s\n" $i >> gitmsg
+        printf "#\t%s\n" $i
+        ((sleepingtime++))
     done
+    sleep $sleepingtime
     nano gitmsg
     git commit -F gitmsg
     git pull --no-commit
