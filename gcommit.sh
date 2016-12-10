@@ -1,6 +1,7 @@
 git add .
 if ! git diff-index --quiet HEAD --; then
     printf "Please write the git commit message.\n"
+    rm gitmsg
     sleep 2
     printf "#Git Files Being Committed:\n" > gitmsg
     for i in $(git diff --name-only); do
