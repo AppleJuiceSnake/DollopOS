@@ -1,18 +1,25 @@
+#!/usr/bin/python
 # Planning Ahead for the future, with these modules....
+
 import os
 import sys
+import getopt
 import pygame
-import initp
+# Where all the constants and important functions are
+import dollop
+# Where the api goes
+import dollop.api
 
-#set up screen
+#Set up screen
 pygame.init()
-screen = pygame.display.set_mode((320, 480))
+scrsize = (dollop.scr_width, dollop.scr_height)
+if not dollop.fullscr:
+    screen = pygame.display.set_mode(scrsize)
+else:
+    screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)
 
 #Background Image
-index = pygame.image.load('res/placeholder.png')
-screen.blit(index, (1, 1))
+screen.blit(dollop.bg, (1, 1))
+screen.blit(dollop.logo, (20,20))
 pygame.display.flip()
-
-
-screen.blit(initp.logo, (20,20))
-mainLoop()
+dollop.mainLoop()
