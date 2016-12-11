@@ -1,6 +1,7 @@
 #API BEGINS!
 import os
 import pygame
+import bluetooth
 print "Incomplete!~"
 
 def text_objects(text, font):

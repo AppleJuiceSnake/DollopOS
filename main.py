@@ -5,10 +5,8 @@ import os
 import sys
 import getopt
 import pygame
-# Where all the constants and important functions are
+# The entire Dollop System, plus an api!
 import dollop
-# Where the api goes
-import dollop.api
 
 #Set up screen
 pygame.init()

@@ -18,9 +18,10 @@ def setSpeed(speed):
         currentSpeed = speed
     except TypeError:
         print "HEY! THE SPEED IN setSpeed() IS SUPPOSED TO BE A NUMBER!"
-
 def getSpeed():
     return currentSpeed
+
+
 #Main Loop
 def mainLoop():
     while True:
@@ -31,3 +32,4 @@ def mainLoop():
     api.message_display()
     pygame.display.flip()
     clock.tick(currentSpeed)
+    pygame.draw.rect(gameDisplay, red,(550,450,100,50))
