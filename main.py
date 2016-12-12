@@ -6,7 +6,6 @@ import sys
 import getopt
 import pygame
 # The entire Dollop System, plus an api!
-<<<<<<< HEAD
 from dollop import *
 
 #Constants
@@ -16,9 +15,9 @@ menu = pygame.image.load('res/menu.png')
 scr_width = 320
 scr_height = 480
 fullscr = False
-=======
+
 import dollop
->>>>>>> aaf1394ded9685f3d4fe7bfd99f4160df4dd5e12
+
 
 #Set up screen
 pygame.init()
@@ -31,6 +30,6 @@ else:
 #Background Image
 screen.blit(dollop.bg, (1, 1))
 screen.blit(dollop.logo, (20,20))
-screen.blit(menu, (320,1)
+screen.blit(menu, (280,1)
 pygame.display.flip()
 dollop.mainLoop()
