@@ -18,7 +18,7 @@ fullscr = False
 #Set up screen
 pygame.init()
 scrsize = (scr_width, scr_height)
-if not .fullscr:
+if not fullscr:
     screen = pygame.display.set_mode(scrsize)
 else:
     screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)
