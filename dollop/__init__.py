@@ -41,7 +41,8 @@ lightred = (255,0,64)
 #Constants
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load('res/placeholder.png')
-menu = pygame.image.load('res/menu.png')
+menu = pygame.image.load('res/menu_icon.png')
+tskbar = pygame.image.load('res/taskbar.png')
 scr_width = 320
 scr_height = 480
 fullscr = False
