@@ -72,7 +72,7 @@ def getSpeed():
 
 x = 440
 y = 1
-pygame.draw.rect(Button_Start, red,(550,450,100,50))
+
 #Main Loop
 def mainLoop():
     while True:
