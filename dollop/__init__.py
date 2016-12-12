@@ -1,4 +1,6 @@
 import pygame
+import os
+import sys
 
 # To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
@@ -54,7 +56,6 @@ lightred = (255,0,64)
 #Constants
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load('res/placeholder.png')
-menu = pygame.image.load('res/menu.png')
 scr_width = 320
 scr_height = 480
 fullscr = False
@@ -95,7 +96,3 @@ def mainLoop():
     pygame.display.flip()
     clock.tick(currentSpeed)
     pygame.draw.rect(gameDisplay, red,(550,450,100,50))
-<<<<<<< HEAD
-=======
-
->>>>>>> 952f9ddee7ed9c35be81889a0c1fe9bfd32a6b99
