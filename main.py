@@ -11,6 +11,7 @@ from dollop import *
 #Constants
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load('res/placeholder.png')
+menu = pygame.image.load('res/menu.png')
 scr_width = 320
 scr_height = 480
 fullscr = False
@@ -26,5 +27,6 @@ else:
 #Background Image
 screen.blit(dollop.bg, (1, 1))
 screen.blit(dollop.logo, (20,20))
+screen.blit(menu, (320,1)
 pygame.display.flip()
 dollop.mainLoop()
