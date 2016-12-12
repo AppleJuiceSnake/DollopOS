@@ -107,7 +107,8 @@ pygame.display.set_caption('DollopOS OpenAlpha 1')
 
 
 #Background Image, and various other screen elements
-
+oldtime = 0
+time = 0
 #Main Loop
 def mainLoop():
     while True:
@@ -124,6 +125,11 @@ def mainLoop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+	if oldtime != time
+		screen.blit(logo, (288,448))
+		screen.blit(tskbar, (0,440))
+		screen.blit(label, (50, 440))
+		oldtime = time
 	from time import gmtime, strftime
 	time = strftime("%H:%M", gmtime())
 	pygame.font.init()
