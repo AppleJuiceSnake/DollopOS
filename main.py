@@ -107,10 +107,6 @@ pygame.display.set_caption('DollopOS OpenAlpha 1')
 
 
 #Background Image, and various other screen elements
-screen.blit(bg, (1, 1))
-screen.blit(tskbar, (0,440))
-screen.blit(logo, (288,448))
-screen.blit(menu, (0,440))
 
 #Main Loop
 def mainLoop():
@@ -145,6 +141,5 @@ screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
 menu_opener()
 screen.blit(logo, (288,448))
-screen.blit(label, (50, 440))
 pygame.display.flip()
 mainLoop()
