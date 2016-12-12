@@ -6,19 +6,12 @@ import sys
 import getopt
 import pygame
 # The entire Dollop System, plus an api!
-from dollop import *
-
-#Constants
-logo = pygame.image.load('res/logo.png')
-bg = pygame.image.load('res/placeholder.png')
-scr_width = 320
-scr_height = 480
-fullscr = False
+import dollop
 
 #Set up screen
 pygame.init()
-scrsize = (scr_width, scr_height)
-if not fullscr:
+scrsize = (dollop.scr_width, dollop.scr_height)
+if not dollop.fullscr:
     screen = pygame.display.set_mode(scrsize)
 else:
     screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)

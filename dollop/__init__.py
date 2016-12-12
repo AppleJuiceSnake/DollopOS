@@ -1,5 +1,4 @@
 import pygame
-import api
 
 # To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
