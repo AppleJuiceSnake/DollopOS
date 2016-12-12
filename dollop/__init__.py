@@ -89,18 +89,17 @@ def getSpeed():
 def mainLoop():
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+			x = 440
+			y = 1
+			if event.type == pygame.MOUSEBUTTONDOWN:  
+   			(x, y) = event.pos  
+    			if Button_Start.get_rect().collidepoint(x, y):  
+					i = 1
+			if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
     pygame.display.flip()
     clock.tick(currentSpeed)
     pygame.draw.rect(gameDisplay, red,(550,450,100,50))
 
-x = 440
-y = 1
-
-if event.type == pygame.MOUSEBUTTONDOWN:  
-    (x, y) = event.pos  
-    if Button_Start.get_rect().collidepoint(x, y):  
-		i = 1
 
