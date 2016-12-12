@@ -2,7 +2,7 @@ import pygame
 import os
 import sys
 
-# To add more colors, go to www.colorschemer.com/online.html or another color palette
+#To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
 # this file and johnnyw3 or I will decide on whether your changes are acceptable.
 
@@ -86,18 +86,18 @@ def getSpeed():
 
 x = 440
 y = 1
-
+pygame.draw.rect(Button_Start, red,(550,450,100,50))
 #Main Loop
 def mainLoop():
     while True:
         for event in pygame.event.get():
 			if event.type == pygame.MOUSEBUTTONDOWN:  
-   			(x, y) = event.pos  
+   				(x, y) = event.pos  
     			if Button_Start.get_rect().collidepoint(x, y):  
-
+						print("It WORKED!!!!!!")
 			if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+            				pygame.quit()
+            				quit()
     pygame.display.flip()
     clock.tick(currentSpeed)
     pygame.draw.rect(gameDisplay, red,(550,450,100,50))
