@@ -77,15 +77,6 @@ pygame.draw.rect(Button_Start, red,(550,450,100,50))
 def mainLoop():
     while True:
         for event in pygame.event.get():
-<<<<<<< HEAD
-			if event.type == pygame.MOUSEBUTTONDOWN:  
-   				(x, y) = event.pos  
-    			if Button_Start.get_rect().collidepoint(x, y):  
-						print("It WORKED!!!!!!")
-			if event.type == pygame.QUIT:
-            				pygame.quit()
-            				quit()
-=======
 	    if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse = pygame.mouse.get_pos()
    		if mouse[0] < 40:
@@ -96,7 +87,6 @@ def mainLoop():
 	    if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
->>>>>>> 8aab69762e0d38e7005a01882f4228ad422ed1a2
     pygame.display.flip()
     clock.tick(currentSpeed)
     pygame.draw.rect(gameDisplay, red,(550,450,100,50))
