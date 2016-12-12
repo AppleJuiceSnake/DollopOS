@@ -1,6 +1,7 @@
 import pygame
 import os
 import sys
+import time
 
 #To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
@@ -71,8 +72,18 @@ def setSpeed(speed):
 def getSpeed():
     return currentSpeed
 
+
 x = 440
 y = 1
+
+#Time, in the taskbar!!!
+from time import gmtime, strftime
+time = strftime("%H:%M", gmtime())
+pygame.font.init()
+font_path = "./fonts/newfont.ttf"
+font_size = 32
+fontObj = pygame.font.Font("freesansbold.ttf", 36)
+label = fontObj.render(time, 1, (black))
 
 #Main Loop
 def mainLoop():
@@ -91,3 +102,4 @@ def mainLoop():
     pygame.display.flip()
     clock.tick(currentSpeed)
     pygame.draw.rect(gameDisplay, red,(550,450,100,50))
+

@@ -19,11 +19,15 @@ if not dollop.fullscr:
 else:
     screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)
 
-#Background Image
+#Window Title
+pygame.display.set_caption('DollopOS OpenAlpha 1')
+
+#Background Image, and various other screen elements
 screen.blit(dollop.bg, (1, 1))
 screen.blit(dollop.tskbar, (0,440))
 screen.blit(dollop.logo, (288,448))
 screen.blit(dollop.menu, (0,440))
+screen.blit(dollop.label, (50, 440))
 pygame.display.flip()
 dollop.mainLoop()
 
