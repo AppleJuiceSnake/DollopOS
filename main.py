@@ -30,6 +30,6 @@ else:
 #Background Image
 screen.blit(dollop.bg, (1, 1))
 screen.blit(dollop.logo, (20,20))
-screen.blit(menu, (280,1))
+screen.blit(menu, (1,440))
 pygame.display.flip()
 dollop.mainLoop()
