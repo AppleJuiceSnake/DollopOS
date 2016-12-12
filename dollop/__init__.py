@@ -84,17 +84,17 @@ def setSpeed(speed):
 def getSpeed():
     return currentSpeed
 
+x = 440
+y = 1
 
 #Main Loop
 def mainLoop():
     while True:
         for event in pygame.event.get():
-			x = 440
-			y = 1
 			if event.type == pygame.MOUSEBUTTONDOWN:  
    			(x, y) = event.pos  
     			if Button_Start.get_rect().collidepoint(x, y):  
-					i = 1
+
 			if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
