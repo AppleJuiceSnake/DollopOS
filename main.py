@@ -105,6 +105,7 @@ else:
 #Window Title
 pygame.display.set_caption('DollopOS OpenAlpha 1')
 
+<<<<<<< HEAD
 #Background Image, and various other screen elements
 screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
@@ -112,6 +113,8 @@ screen.blit(logo, (288,448))
 screen.blit(menu, (0,440))
 
 
+=======
+>>>>>>> b0482178f36306e43cb040ca315310506b1fe7f2
 #Main Loop
 def mainLoop():
     while True:
@@ -143,7 +146,11 @@ def mainLoop():
 #Background Image
 screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
-screen.blit(logo, (288,448))
 menu_opener()
+<<<<<<< HEAD
+=======
+screen.blit(logo, (288,448))
+screen.blit(label, (50, 440))
+>>>>>>> b0482178f36306e43cb040ca315310506b1fe7f2
 pygame.display.flip()
 mainLoop()
