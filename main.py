@@ -147,10 +147,7 @@ def mainLoop():
 screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
 menu_opener()
-<<<<<<< HEAD
-=======
 screen.blit(logo, (288,448))
 screen.blit(label, (50, 440))
->>>>>>> b0482178f36306e43cb040ca315310506b1fe7f2
 pygame.display.flip()
 mainLoop()
