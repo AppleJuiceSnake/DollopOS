@@ -21,3 +21,6 @@ screen.blit(dollop.bg, (1, 1))
 screen.blit(dollop.logo, (20,20))
 pygame.display.flip()
 dollop.mainLoop()
+
+
+
