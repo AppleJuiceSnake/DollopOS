@@ -69,7 +69,7 @@ def menu_opener():
         menuopen = True
         pygame.display.flip()
 
-# Text Functions
+# Text Functions 
 def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
