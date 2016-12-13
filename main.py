@@ -109,6 +109,13 @@ else:
 #Window Title
 pygame.display.set_caption('DollopOS OpenAlpha 1')
 
+<<<<<<< HEAD
+=======
+
+#Background Image, and various other screen elements
+oldtime = "0:00"
+time = "0:00"
+>>>>>>> bfc42b47b051fcf89a28fc4577071d7907b94bde
 #Main Loop
 def mainLoop():
     global time
@@ -134,9 +141,7 @@ def mainLoop():
             screen.blit(label, (0,0))
         pygame.display.flip()
         clock.tick(currentSpeed)
-        pygame.draw.rect(screen, red,(550,450,100,50))
-
-#Background Image
+        pygame.draw.rect(screen, red,(550,450,100,50))#Background Image
 screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
 screen.blit(tskbar, (0,0))
