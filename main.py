@@ -20,6 +20,7 @@ menuopen = False
 time = strftime("%I:%M", localtime())
 x = 440
 y = 1
+curstate = "Desktop"
 
 #To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
@@ -62,6 +63,12 @@ def menu_opener():
     global menuopen
     if menuopen:
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
+		curstate = "Menu"
+		screen.blit(tskbar, (0,0))
+        screen.blit(label, (0,0))
+        screen.blit(close, (280,0))
+		title = font.render(curstate, True, black)
+		screen.blit(title, (100,0))
         menuopen = False
         pygame.display.flip()
     else:
@@ -131,11 +138,14 @@ def mainLoop():
                 quit()
         if not time == strftime("%I:%M", localtime()):
             time = strftime("%I:%M", localtime())
-            font = pygame.font.SysFont("comicsansms", 45)
+            font = pygame.font.SysFont("comicsansms", 55)
             label = font.render(time, True, black)
             screen.blit(tskbar, (0,0))
             screen.blit(label, (0,0))
             screen.blit(close, (280,0))
+	font = pygame.font.SysFont("comicsansms", 55)
+	title = font.render(curstate, True, black)
+	screen.blit(title, (100,0))
         pygame.display.flip()
         clock.tick(currentSpeed)
         pygame.draw.rect(screen, red,(550,450,100,50))
@@ -145,7 +155,7 @@ screen.blit(tskbar, (0,0))
 screen.blit(close, (280,0))
 menu_opener()
 screen.blit(logo, (288,448))
-font = pygame.font.SysFont("comicsansms", 45)
+font = pygame.font.SysFont("comicsansms", 55)
 label = font.render(time, True, black)
 screen.blit(label, (0, 0))
 pygame.display.flip()
