@@ -11,6 +11,7 @@ logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load('res/placeholder.png')
 tskbar = pygame.image.load('res/taskbar.png')
 menu = pygame.image.load('res/menu_icon.png')
+close = pygame.image.load('res/close_icon.png')
 scr_width = 320
 scr_height = 480
 fullscr = False
@@ -107,8 +108,8 @@ pygame.display.set_caption('DollopOS OpenAlpha 1')
 
 
 #Background Image, and various other screen elements
-oldtime = 0
-time = 0
+oldtime = "0:00"
+time = "0:00"
 #Main Loop
 def mainLoop():
     while True:
@@ -125,10 +126,11 @@ def mainLoop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-	if oldtime != time
+	if oldtime != time:
 		screen.blit(logo, (288,448))
 		screen.blit(tskbar, (0,440))
-		screen.blit(label, (50, 440))
+		screen.blit(label, (95, 440))
+		screen.blit(close_icon (50,440)
 		oldtime = time
 	from time import gmtime, strftime
 	time = strftime("%H:%M", gmtime())
@@ -145,6 +147,7 @@ def mainLoop():
 #Background Image
 screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
+screen.blit(close_icon (50,440)
 menu_opener()
 screen.blit(logo, (288,448))
 pygame.display.flip()
