@@ -5,16 +5,19 @@ import os
 import sys
 import getopt
 import pygame
+from time import localtime, strftime
 
 #Constants
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load('res/placeholder.png')
 tskbar = pygame.image.load('res/taskbar.png')
 menu = pygame.image.load('res/menu_icon.png')
+close = pygame.image.load('res/close_icon.png')
 scr_width = 320
 scr_height = 480
 fullscr = False
 menuopen = False
+time = strftime("%I:%M", localtime())
 
 #To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
@@ -56,15 +59,15 @@ lightred = (255,0,64)
 def menu_opener():
     global menuopen
     if menuopen:
-        screen.blit(menu, (0,440))
-        pygame.transform.flip(menu,True,False)
+        screen.blit(pygame.transform.flip(menu,False,True), (0,440))
         menuopen = False
+        pygame.display.flip()
+        print "True"
     else:
         screen.blit(menu, (0,440))
-        pygame.transform.flip(menu,False,False)
         menuopen = True
-    pygame.display.flip()
-
+        pygame.display.flip()
+        print "False"
 
 # Text Functions
 def text_objects(text, font):
@@ -72,7 +75,7 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 def display_text(text,size,xloc,yloc):
-    largeText = pygame.font.Font('freesansbold.ttf',size)
+    largeText = pygame.font.Font('freesansbold',size)
     TextSurf, TextRect = text_objects(text, largeText)
     TextRect.center = (xloc,yloc)
     gameDisplay.blit(TextSurf, TextRect)
@@ -95,6 +98,7 @@ y = 1
 
 #Set up screen
 pygame.init()
+pygame.font.init()
 scrsize = (scr_width, scr_height)
 if not fullscr:
     screen = pygame.display.set_mode(scrsize)
@@ -105,11 +109,9 @@ else:
 #Window Title
 pygame.display.set_caption('DollopOS OpenAlpha 1')
 
-
-#Background Image, and various other screen elements
-
 #Main Loop
 def mainLoop():
+    global time
     while True:
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -124,22 +126,25 @@ def mainLoop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-	from time import gmtime, strftime
-	time = strftime("%H:%M", gmtime())
-	pygame.font.init()
-	font_path = "./fonts/newfont.ttf"
-	font_size = 32
-	fontObj = pygame.font.Font("freesansbold.ttf", 36)
-	label = fontObj.render(time, 1, (black))
-	screen.blit(label, (50, 440))
-    pygame.display.flip()
-    clock.tick(currentSpeed)
-    pygame.draw.rect(gameDisplay, red,(550,450,100,50))
+        if not time == strftime("%I:%M", localtime()):
+            time = strftime("%I:%M", localtime())
+            font = pygame.font.SysFont("comicsansms", 45)
+            label = font.render(time, True, black)
+            screen.blit(tskbar, (0,0))
+            screen.blit(label, (0,0))
+        pygame.display.flip()
+        clock.tick(currentSpeed)
+        pygame.draw.rect(screen, red,(550,450,100,50))
 
 #Background Image
 screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
+screen.blit(tskbar, (0,0))
+screen.blit(close, (280,0))
 menu_opener()
 screen.blit(logo, (288,448))
+font = pygame.font.SysFont("comicsansms", 45)
+label = font.render(time, True, black)
+screen.blit(label, (0, 0))
 pygame.display.flip()
 mainLoop()
