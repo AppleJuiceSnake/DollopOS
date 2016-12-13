@@ -18,6 +18,8 @@ scr_height = 480
 fullscr = False
 menuopen = False
 time = strftime("%I:%M", localtime())
+x = 440
+y = 1
 
 #To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
@@ -62,12 +64,10 @@ def menu_opener():
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
         menuopen = False
         pygame.display.flip()
-        print "True"
     else:
         screen.blit(menu, (0,440))
         menuopen = True
         pygame.display.flip()
-        print "False"
 
 # Text Functions
 def text_objects(text, font):
@@ -96,7 +96,7 @@ def getSpeed():
 x = 440
 y = 1
 
-#Set up screen
+#Set up pygame
 pygame.init()
 pygame.font.init()
 scrsize = (scr_width, scr_height)
@@ -109,13 +109,6 @@ else:
 #Window Title
 pygame.display.set_caption('DollopOS OpenAlpha 1')
 
-<<<<<<< HEAD
-=======
-
-#Background Image, and various other screen elements
-oldtime = "0:00"
-time = "0:00"
->>>>>>> bfc42b47b051fcf89a28fc4577071d7907b94bde
 #Main Loop
 def mainLoop():
     global time
@@ -127,9 +120,12 @@ def mainLoop():
                     if mouse[0] > 0:
                         if mouse[1] < 480:
                             if mouse[1] > 440:
-                                print "Button Pressed"
                                 #State stuff goes here
                                 menu_opener()
+                if mouse[0] > 280:
+                    if mouse[1] < 40:
+                        pygame.quit()
+                        quit()
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
@@ -139,9 +135,10 @@ def mainLoop():
             label = font.render(time, True, black)
             screen.blit(tskbar, (0,0))
             screen.blit(label, (0,0))
+            screen.blit(close, (280,0))
         pygame.display.flip()
         clock.tick(currentSpeed)
-        pygame.draw.rect(screen, red,(550,450,100,50))#Background Image
+        pygame.draw.rect(screen, red,(550,450,100,50))
 screen.blit(bg, (1, 1))
 screen.blit(tskbar, (0,440))
 screen.blit(tskbar, (0,0))
