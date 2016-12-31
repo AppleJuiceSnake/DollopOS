@@ -1,5 +1,5 @@
 # dollop-os
-Apple Juice Snake's Operating System
+Apple Juice Snake's Python Operating System.
 
 Make sure you run "main.py" to start DollopOS
 

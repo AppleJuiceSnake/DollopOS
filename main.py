@@ -18,8 +18,27 @@ scr_height = 480
 fullscr = False
 menuopen = False
 time = strftime("%I:%M", localtime())
-x = 440
-y = 1
+curstate = ""
+
+#Set up pygame
+pygame.init()
+pygame.font.init()
+scrsize = (scr_width, scr_height)
+if not fullscr:
+    screen = pygame.display.set_mode(scrsize)
+else:
+    screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)
+
+# Text Functions 
+def text_objects(text, font):
+    textSurface = font.render(text, True, black)
+    return textSurface, textSurface.get_rect()
+
+def display_text(text,size,xloc,yloc):
+    largeText = pygame.font.Font('freesansbold',size)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = (xloc,yloc)
+    return TextSurf, TextRect
 
 #To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
@@ -67,25 +86,15 @@ def menu_opener():
         screen.blit(close, (280,0))
         font = pygame.font.SysFont("comicsansms", 55)
         title = font.render(curstate, True, black)
+        
         screen.blit(title, (0,0))
         menuopen = False
         pygame.display.flip()
     else:
+        
         screen.blit(menu, (0,440))
-        menuopen = False 
+        menuopen = True
         pygame.display.flip()
-
-# Text Functions 
-def text_objects(text, font):
-    textSurface = font.render(text, True, black)
-    return textSurface, textSurface.get_rect()
-
-def display_text(text,size,xloc,yloc):
-    largeText = pygame.font.Font('freesansbold',size)
-    TextSurf, TextRect = text_objects(text, largeText)
-    TextRect.center = (xloc,yloc)
-    gameDisplay.blit(TextSurf, TextRect)
-
 
 #Speed Control
 clock = pygame.time.Clock()
@@ -100,61 +109,56 @@ def setSpeed(speed):
 def getSpeed():
     return currentSpeed
 
-x = 440
-y = 1
-
-#Set up pygame
-pygame.init()
-pygame.font.init()
-scrsize = (scr_width, scr_height)
-if not fullscr:
-    screen = pygame.display.set_mode(scrsize)
-else:
-    screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)
-
-
 #Window Title
 pygame.display.set_caption('DollopOS OpenAlpha 1')
 
-#Main Loop
+# Main Loop
+# Always define variables that need to stay set from the loop, outside the loop.
+# Curstates are: "" "Menu"
 def mainLoop():
     global time
+    global curstate
     while True:
-        curstate = ""
-        menuopen = False
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse = pygame.mouse.get_pos()
-                if mouse[0] < 40:
-                    if mouse[0] > 0:
-                        if mouse[1] < 480:
-                            if mouse[1] > 440:
-                                #State stuff goes here
-                                curstate = "Menu"
-                                menuopen = True
-                                menu_opener()
-                if mouse[0] > 280:
-                    if mouse[1] < 40:
-                        pygame.quit()
-                        quit()
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-        if not menuopen:
-            curstate = "Desktop"
-        if not time == strftime("%I:%M", localtime()):
-            time = strftime("%I:%M", localtime())
-            font = pygame.font.SysFont("comicsansms", 55)
-            label = font.render(time, True, black)
-            screen.blit(tskbar, (0,0))
-            screen.blit(label, (50,440))
-            screen.blit(close, (280,0))
-	font = pygame.font.SysFont("comicsansms", 55)
-	title = font.render(curstate, True, black)
-	screen.blit(title, (0,0))
-        pygame.display.flip()
-        clock.tick(currentSpeed)
-        pygame.draw.rect(screen, red,(550,450,100,50))
+        if curstate == "":
+            menuopen = False
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse = pygame.mouse.get_pos()
+                    if mouse[0] < 40:
+                        if mouse[0] > 0:
+                            if mouse[1] < 480:
+                                if mouse[1] > 440:
+                                    #State stuff goes here
+                                    curstate = "Menu"
+                                    menuopen = True
+                                    menu_opener()
+                    #Temporary quit stuffs for convenience
+                    if mouse[0] > 280:
+                        if mouse[1] < 40:
+                            pygame.quit()
+                            quit()
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+            if not time == strftime("%I:%M", localtime()):
+                time = strftime("%I:%M", localtime())
+                font = pygame.font.SysFont("comicsansms", 55)
+                label = font.render(time, True, black)
+                screen.blit(tskbar, (0,0))
+                screen.blit(label, (50,440))
+                screen.blit(close, (280,0))
+            display_text("Desktop")
+            screen.blit(title, (0,0))
+            pygame.display.flip()
+            clock.tick(currentSpeed)
+            pygame.draw.rect(screen, red,(550,450,100,50))
+        else:
+            if curstate == "Menu":
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                screen.blit(display_text("",40,0,0), (0,0))
+                
 def startup():
     screen.blit(bg, (1, 1))
     screen.blit(tskbar, (0,440))
