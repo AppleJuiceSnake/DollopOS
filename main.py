@@ -17,6 +17,7 @@ scr_width = 320
 scr_height = 480
 fullscr = False
 menuopen = False
+started = False
 time = strftime("%I:%M", localtime())
 x = 440
 y = 1
@@ -63,13 +64,9 @@ def menu_opener():
     if menuopen:
         curstate = "Menu"
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
-        screen.blit(tskbar, (0,0))
-        screen.blit(close, (280,0))
-        font = pygame.font.SysFont("comicsansms", 55)
-        title = font.render(curstate, True, black)
-        screen.blit(title, (0,0))
-        menuopen = False
         pygame.display.flip()
+        menuopen = False
+        pygame.draw.rect(screen, red,(250,450,100,50))
     else:
         screen.blit(menu, (0,440))
         menuopen = False 
@@ -150,23 +147,25 @@ def mainLoop():
             screen.blit(label, (50,440))
             screen.blit(close, (280,0))
 	font = pygame.font.SysFont("comicsansms", 55)
-	title = font.render(curstate, True, black)
-	screen.blit(title, (0,0))
         pygame.display.flip()
         clock.tick(currentSpeed)
         pygame.draw.rect(screen, red,(550,450,100,50))
-def startup():
-    screen.blit(bg, (1, 1))
-    screen.blit(tskbar, (0,440))
-    screen.blit(tskbar, (0,0))
-    screen.blit(close, (280,0))
-    screen.blit(logo, (288,448))
-    screen.blit(menu, (0,440))
-    font = pygame.font.SysFont("comicsansms", 55)
-    label = font.render(time, True, black)
-    screen.blit(label, (50, 440))
-    pygame.display.flip()
-    mainLoop()
 
-startup()
+
+
+if not started:
+	screen.blit(bg, (1, 1))
+	screen.blit(tskbar, (0,440))
+	screen.blit(tskbar, (0,0))
+	screen.blit(close, (280,0))
+	screen.blit(logo, (288,448))
+	screen.blit(menu, (0,440))
+	font = pygame.font.SysFont("comicsansms", 55)
+	label = font.render(time, True, black)
+	screen.blit(label, (50, 440))
+	pygame.display.flip()
+	started = True
+
+mainLoop()
+
 
