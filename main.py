@@ -80,12 +80,9 @@ def menu_opener():
     if menuopen:
         curstate = "Menu"
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
-<<<<<<< HEAD
-=======
         screen.blit(tskbar, (0,0))
         screen.blit(close, (280,0))
         menuopen = False
->>>>>>> c8ffaf7af3c83ce31b893d5e4f805a139f388cb4
         pygame.display.flip()
         menuopen = False
         pygame.draw.rect(screen, red,(250,450,100,50))
@@ -166,7 +163,6 @@ def mainLoop():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         quit()
-<<<<<<< HEAD
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
@@ -201,7 +197,6 @@ if not started:
 
 mainLoop()
 
-=======
                 display_text("Menu", 35, 0,0)
                 screen.blit(close, (280, 0))
 def startup():
@@ -221,5 +216,4 @@ def startup():
     print "Pygame Version", pygame.ver
     mainLoop()
 startup()
->>>>>>> c8ffaf7af3c83ce31b893d5e4f805a139f388cb4
 
