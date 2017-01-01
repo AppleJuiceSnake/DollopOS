@@ -1,8 +1,4 @@
 gitmsg
-.idea/vcs.xml
-.idea/dollop-os.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/workspace.xml
+.idea
 fake_utility.py
 logs
