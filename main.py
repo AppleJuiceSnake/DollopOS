@@ -11,6 +11,13 @@ while cp2.returncode == None:
     currev = str(int(cp2.communicate()[0]))
 # Constants
 
+#for some reason, the seting for the background setting isn't working right now, so I disabled it to further work on it
+f = open('settings/background.txt', 'r')
+bgsetting = f.readline()
+f = open('settings/installed.txt', 'r+')
+installed = f.read()
+bsetting = bgsetting
+print bgsetting , 'is currenlty set as the background'
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load('res/placeholder.png')
 tskbar = pygame.image.load('res/taskbar.png')
@@ -87,6 +94,7 @@ def menu_opener():
         menuopen = False
         #Set up the background for the menu...
         pygame.draw.rect(screen, gray,(0,380,150,60))
+        display_text(installed,black,11,0,380)
     else:
         display_text("Desktop",black , 35, 0, 0)
         screen.blit(menu, (0,440))
