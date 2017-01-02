@@ -10,11 +10,7 @@ cp2 = Popen(['git', 'rev-list', '--all', '--count'], stdout=PIPE,stderr=PIPE)
 while cp2.returncode == None:
     currev = str(int(cp2.communicate()[0]))
 
-<<<<<<< HEAD
-#for some reason, the seting for the background setting isn't working right now, so I disabled it to further work on it
-f = open('settings/background.txt', 'r+')
-bgsetting = f.readline(19)
-=======
+
 #Constants
 scr_width = 320
 scr_height = 480
@@ -23,11 +19,9 @@ menuopen = False
 started = False
 time = strftime("%I:%M", localtime())
 curstate = ""
-# for some reason, the seting for the background setting isn't working right now, so I disabled it to further work on it -johnnyw3
 # Assets
 f = open('settings/background.txt', 'r')
-bgsetting = f.readline()
->>>>>>> 61565366b9232654a0cc0043460c662ec63b1187
+bgsetting = f.readline(19)
 f = open('settings/installed.txt', 'r+')
 installed = f.read()
 bsetting = "res/menu.png"
