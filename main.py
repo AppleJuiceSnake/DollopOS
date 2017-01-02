@@ -24,6 +24,8 @@ scr_widths = f.read(3)
 scr_heights = e.read(3)
 scr_width = int(scr_widths)
 scr_height = int(scr_heights)
+f.close
+e.close
 f = open('settings/background.txt', 'r')
 bgsetting = f.readline(19)
 f = open('settings/installed.txt', 'r+')
