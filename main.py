@@ -3,6 +3,7 @@ import os
 import sys
 import getopt
 import pygame
+import json
 from time import localtime, strftime
 # Current revision from commit count
 from subprocess import Popen, PIPE
