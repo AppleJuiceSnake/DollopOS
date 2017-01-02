@@ -85,7 +85,8 @@ def menu_opener():
         menuopen = False
         pygame.display.flip()
         menuopen = False
-        pygame.draw.rect(screen, red,(250,450,100,50))
+        #Set up the background for the menu...
+        pygame.draw.rect(screen, gray,(0,380,150,60))
     else:
         display_text("Desktop",black , 35, 0, 0)
         screen.blit(menu, (0,440))
