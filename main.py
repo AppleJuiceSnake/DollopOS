@@ -9,9 +9,17 @@ from subprocess import Popen, PIPE
 cp2 = Popen(['git', 'rev-list', '--all', '--count'], stdout=PIPE,stderr=PIPE)
 while cp2.returncode == None:
     currev = str(int(cp2.communicate()[0]))
-# Constants
 
-#for some reason, the seting for the background setting isn't working right now, so I disabled it to further work on it
+#Constants
+scr_width = 320
+scr_height = 480
+fullscr = False
+menuopen = False
+started = False
+time = strftime("%I:%M", localtime())
+curstate = ""
+# for some reason, the seting for the background setting isn't working right now, so I disabled it to further work on it -johnnyw3
+# Assets
 f = open('settings/background.txt', 'r')
 bgsetting = f.readline()
 f = open('settings/installed.txt', 'r+')
@@ -23,13 +31,6 @@ bg = pygame.image.load('res/placeholder.png')
 tskbar = pygame.image.load('res/taskbar.png')
 menu = pygame.image.load('res/menu_icon.png')
 close = pygame.image.load('res/close_icon.png')
-scr_width = 320
-scr_height = 480
-fullscr = False
-menuopen = False
-started = False
-time = strftime("%I:%M", localtime())
-curstate = ""
 # Set up pygame
 pygame.init()
 pygame.font.init()
@@ -86,18 +87,25 @@ def menu_opener():
     global menuopen
     if menuopen:
         curstate = "Menu"
+        #Set up the background for the menu before drawing absolutly anything else.
+        pygame.draw.rect(screen, gray,(0,380,150,60))
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
         screen.blit(tskbar, (0,0))
         screen.blit(close, (280,0))
         menuopen = False
         pygame.display.flip()
         menuopen = False
-        #Set up the background for the menu...
-        pygame.draw.rect(screen, gray,(0,380,150,60))
         display_text(installed,black,11,0,380)
     else:
-        display_text("Desktop",black , 35, 0, 0)
-        screen.blit(menu, (0,440))
+
+        screen.blit(bg, (1, 1))
+        screen.blit(tskbar, (0, 440))
+        screen.blit(tskbar, (0, 0))
+        screen.blit(close, (280, 0))
+        screen.blit(logo, (288, 448))
+        screen.blit(menu, (0, 440))
+        display_text("Desktop", black, 35, 0, 0)
+        display_text(time, black, 35, 50, 440)
         menuopen = True
         pygame.display.flip()
 # Speed Control
