@@ -18,3 +18,4 @@ def start():
         from errno import errorcode
         print errorcode.get(process.returncode)
         exit()
+start()

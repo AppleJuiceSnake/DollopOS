@@ -32,12 +32,12 @@ if not fullscr:
 else:
     screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)
 # Text Functions 
-def text_objects(text, font):
-    textSurface = font.render(text, True, black)
+def text_objects(text,color, font):
+    textSurface = font.render(text, True, color)
     return textSurface, textSurface.get_rect()
-def display_text(text,size,xloc,yloc):
+def display_text(text,color,size,xloc,yloc):
     largeText = pygame.font.Font('freesansbold.ttf',size)
-    TextSurf, TextRect = text_objects(text, largeText)
+    TextSurf, TextRect = text_objects(text,color,largeText)
     TextRect.topleft = (xloc,yloc)
     screen.blit(TextSurf, TextRect)
 # To add more colors, go to www.colorschemer.com/online.html or another color palette
@@ -87,7 +87,7 @@ def menu_opener():
         menuopen = False
         pygame.draw.rect(screen, red,(250,450,100,50))
     else:
-        display_text("Desktop", 35, 0, 0)
+        display_text("Desktop",black , 35, 0, 0)
         screen.blit(menu, (0,440))
         menuopen = True
         pygame.display.flip()
@@ -134,12 +134,10 @@ def mainLoop():
                     quit()
             if not time == strftime("%I:%M", localtime()):
                 time = strftime("%I:%M", localtime())
-                font = pygame.font.SysFont("comicsansms", 55)
-                label = font.render(time, True, black)
-                screen.blit(tskbar, (0,0))
-                screen.blit(label, (50,440))
-                screen.blit(close, (280,0))
-            display_text("Desktop",35,0,0)
+                screen.blit(tskbar, (0, 0))
+                display_text(time, black, 35, 50, 440)
+                screen.blit(logo, (280, 0))
+            display_text("Desktop",black,35,0,0)
             pygame.display.flip()
             clock.tick(currentSpeed)
             pygame.draw.rect(screen, red,(550,450,100,50))
@@ -166,39 +164,14 @@ def mainLoop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-        if not menuopen:
-            curstate = "Desktop"
         if not time == strftime("%I:%M", localtime()):
             time = strftime("%I:%M", localtime())
-            font = pygame.font.SysFont("comicsansms", 55)
-            label = font.render(time, True, black)
             screen.blit(tskbar, (0,0))
-            screen.blit(label, (50,440))
-            screen.blit(close, (280,0))
-	font = pygame.font.SysFont("comicsansms", 55)
+            display_text(time,black,35,50,440)
+            screen.blit(logo, (280,0))
         pygame.display.flip()
         clock.tick(currentSpeed)
-        pygame.draw.rect(screen, red,(550,450,100,50))
 
-
-
-if not started:
-	screen.blit(bg, (1, 1))
-	screen.blit(tskbar, (0,440))
-	screen.blit(tskbar, (0,0))
-	screen.blit(close, (280,0))
-	screen.blit(logo, (288,448))
-	screen.blit(menu, (0,440))
-	font = pygame.font.SysFont("comicsansms", 55)
-	label = font.render(time, True, black)
-	screen.blit(label, (50, 440))
-	pygame.display.flip()
-	started = True
-
-mainLoop()
-
-                display_text("Menu", 35, 0,0)
-                screen.blit(close, (280, 0))
 def startup():
     screen.blit(bg, (1, 1))
     screen.blit(tskbar, (0,440))
@@ -206,9 +179,7 @@ def startup():
     screen.blit(close, (280,0))
     screen.blit(logo, (288,448))
     screen.blit(menu, (0,440))
-    font = pygame.font.SysFont("comicsansms", 55)
-    label = font.render(time, True, black)
-    screen.blit(label, (50, 440))
+    display_text(time,black,35,50,440)
     pygame.display.flip()
     # Create stuff to log
     print "Current Platform: ", sys.platform
