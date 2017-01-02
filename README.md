@@ -5,7 +5,9 @@ Apple Juice Snake's Python Operating System.
 # How To Use DollopOS
 Make sure you run "main.py" to start DollopOS
 
-You can change the background by editing settings/background.txt, although, please note that you can't change the length of the name of the file, sorry!
+Varous settings can be changed by changing the contents of the text files in the settings folder.
+
+Although, please note that you can't change the length of the files, sorry!
 
 
 # Other Information

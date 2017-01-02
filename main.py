@@ -13,13 +13,18 @@ while cp2.returncode == None:
 
 #Constants
 menuopen = True
-scr_width = 320
-scr_height = 480
 fullscr = False
 started = False
 time = strftime("%I:%M", localtime())
 curstate = ""
 # Assets
+f = open('settings/scr_width.txt', 'r')
+e = open('settings/scr_height.txt', 'r')
+scr_widths = f.read(3)
+scr_heights = e.read(3)
+print scr_widths
+scr_width = int(scr_widths)
+scr_height = int(scr_heights)
 f = open('settings/background.txt', 'r')
 bgsetting = f.readline(19)
 f = open('settings/installed.txt', 'r+')
@@ -176,8 +181,9 @@ def mainLoop():
                         # Temporary quit stuffs for convenience
                         if mouse[0] > 280:
                             if mouse[1] < 40:
-                                pygame.quit()
-                                quit()
+                                if not menuopen:
+                                    pygame.quit()
+                                    quit()
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         quit()
