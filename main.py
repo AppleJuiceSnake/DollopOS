@@ -12,14 +12,16 @@ while cp2.returncode == None:
 # Constants
 
 #for some reason, the seting for the background setting isn't working right now, so I disabled it to further work on it
-f = open('settings/background.txt', 'r')
-bgsetting = f.readline()
+f = open('settings/background.txt', 'r+')
+bgsetting = f.readline(19)
 f = open('settings/installed.txt', 'r+')
 installed = f.read()
+bsetting = "res/menu.png"
+f.close
 bsetting = bgsetting
 print bgsetting , 'is currenlty set as the background'
 logo = pygame.image.load('res/logo.png')
-bg = pygame.image.load('res/placeholder.png')
+bg = pygame.image.load(bsetting)
 tskbar = pygame.image.load('res/taskbar.png')
 menu = pygame.image.load('res/menu_icon.png')
 close = pygame.image.load('res/close_icon.png')
