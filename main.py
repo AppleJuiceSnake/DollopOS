@@ -22,7 +22,6 @@ f = open('settings/scr_width.txt', 'r')
 e = open('settings/scr_height.txt', 'r')
 scr_widths = f.read(3)
 scr_heights = e.read(3)
-print scr_widths
 scr_width = int(scr_widths)
 scr_height = int(scr_heights)
 f = open('settings/background.txt', 'r')
