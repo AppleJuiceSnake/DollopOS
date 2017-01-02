@@ -1,4 +1,4 @@
-# dollop-os
+# DollopOS
 Apple Juice Snake's Python Operating System.
 
 
