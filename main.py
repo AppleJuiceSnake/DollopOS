@@ -12,10 +12,10 @@ while cp2.returncode == None:
 
 
 #Constants
+menuopen = True
 scr_width = 320
 scr_height = 480
 fullscr = False
-menuopen = False
 started = False
 time = strftime("%I:%M", localtime())
 curstate = ""
