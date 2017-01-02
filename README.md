@@ -5,7 +5,7 @@ Be aware that this is in pre-alpha stages, and has very limited functionally
 
 
 # How To Use DollopOS
-Make sure you run "main.py" to start DollopOS
+Make sure you run "python boot.py" to start DollopOS
 
 Varous settings can be changed by changing the contents of the text files in the settings folder.
 
