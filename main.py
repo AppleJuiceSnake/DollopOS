@@ -94,6 +94,7 @@ def menu_opener():
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
         screen.blit(tskbar, (0,0))
         screen.blit(close, (280,0))
+        display_text("Menu", black, 35, 0, 0)
         menuopen = False
         pygame.display.flip()
         menuopen = False
