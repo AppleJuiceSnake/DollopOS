@@ -7,9 +7,7 @@ Be aware that this is in pre-alpha stages, and has very limited functionally
 # How To Use DollopOS
 Make sure you run "python boot.py" to start DollopOS
 
-Varous settings can be changed by changing the contents of the text files in the settings folder.
-
-Although, please note that you can't change the length of the files, sorry!
+Various settings can be changed by changing the contents of the .ini files in the settings folder.
 
 
 # Other Information

@@ -3,7 +3,9 @@ import os
 import sys
 import getopt
 import pygame
-import json
+import ConfigParser
+import io
+from ConfigParser import SafeConfigParser
 from time import localtime, strftime
 # Current revision from commit count
 from subprocess import Popen, PIPE
@@ -19,21 +21,19 @@ started = False
 time = strftime("%I:%M", localtime())
 curstate = ""
 # Assets
-f = open('settings/scr_width.txt', 'r')
-e = open('settings/scr_height.txt', 'r')
-scr_widths = f.read(3)
-scr_heights = e.read(3)
+parser = SafeConfigParser()
+parser.read('settings/display.ini')
+
+bgsetting =  parser.get('Background', 'image')
+bsetting =  parser.get('Background', 'image')
+scr_widths = parser.get('Resoultion', 'width')
+scr_heights = parser.get('Resoultion', 'Height')
 scr_width = int(scr_widths)
 scr_height = int(scr_heights)
-f.close
-e.close
-f = open('settings/background.txt', 'r')
-bgsetting = f.readline(19)
+
 f = open('settings/installed.txt', 'r+')
 installed = f.read()
-bsetting = "res/menu.png"
 f.close
-bsetting = bgsetting
 print bgsetting , 'is currenlty set as the background'
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load(bsetting)
