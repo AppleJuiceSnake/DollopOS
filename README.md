@@ -1,6 +1,8 @@
 # DollopOS
 Apple Juice Snake's Python Operating System.
 
+Be aware that this is in pre-alpha atages, and has very limited functionally
+
 
 # How To Use DollopOS
 Make sure you run "main.py" to start DollopOS
