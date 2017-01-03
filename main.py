@@ -236,6 +236,7 @@ def startup():
     print "Current Platform: ", sys.platform
     print "Current Revision: ", currev
     print "Pygame Version", pygame.ver
+    
     mainLoop()
 startup()
 
