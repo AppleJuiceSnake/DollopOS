@@ -31,6 +31,14 @@ scr_heights = parser.get('Resoultion', 'Height')
 scr_width = int(scr_widths)
 scr_height = int(scr_heights)
 
+parser.read("settings/installed.ini")
+
+instlab = "programs are installed"
+installeds = parser.get('Programs', 'amount')
+installed = int(installeds)
+pe = parser.get('Programs', 'image')
+perror = pygame.image.load(pe)
+
 f = open('settings/installed.txt', 'r+')
 installed = f.read()
 f.close
@@ -97,10 +105,14 @@ def menu_opener():
     if menuopen:
         curstate = "Menu"
         #Set up the background for the menu before drawing absolutly anything else.
-        pygame.draw.rect(screen, gray,(0,380,150,60))
+        pygame.draw.rect(screen, gray,(0,280,200,160))
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
         screen.blit(tskbar, (0,0))
         screen.blit(close, (280,0))
+        display_text(instlab, black, 15, 20, 285)
+        display_text(installeds, black, 15, 0, 285)
+        if installeds == "0":
+            screen.blit(perror, (70,320))
         display_text("Menu", black, 35, 0, 0)
         menuopen = False
         pygame.display.flip()
