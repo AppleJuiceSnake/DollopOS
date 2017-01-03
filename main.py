@@ -5,6 +5,7 @@ import getopt
 import pygame
 import ConfigParser
 import io
+from time import sleep
 from ConfigParser import SafeConfigParser
 from time import localtime, strftime
 # Current revision from commit count
@@ -45,6 +46,7 @@ f.close
 print bgsetting , 'is currenlty set as the background'
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load(bsetting)
+sd = pygame.image.load('res/shut_down.png')
 tskbar = pygame.image.load('res/taskbar.png')
 menu = pygame.image.load('res/menu_icon.png')
 close = pygame.image.load('res/close_icon.png')
@@ -196,6 +198,15 @@ def mainLoop():
                         if mouse[0] > 280:
                             if mouse[1] < 40:
                                 if not menuopen:
+                                    screen.blit(sd, (0, 0))
+                                    pygame.display.flip()
+                                    #Put scripts to be ran on shutdown here
+                                    pygame.quit()
+                                    quit()
+                                if menuopen:
+                                    screen.blit(sd, (0, 0))
+                                    pygame.display.flip()
+                                    #Put scripts to be ran on shutdown here
                                     pygame.quit()
                                     quit()
                     if event.type == pygame.QUIT:
