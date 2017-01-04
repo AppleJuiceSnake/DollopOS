@@ -1,10 +1,11 @@
-# Planning Ahead for the future, with these modules....
+# modules,modules,modules
 import os
 import sys
 import getopt
 import pygame
 import ConfigParser
 import io
+import subprocess
 from time import sleep
 from ConfigParser import SafeConfigParser
 from time import localtime, strftime
@@ -42,10 +43,10 @@ perror = pygame.image.load(pe)
 p1 = parser.get('Programs', 'p1')
 p1image = parser.get('Programs', 'p1image')
 
-f = open('settings/installed.txt', 'r+')
-installed = f.read()
-f.close
+
 print bgsetting , 'is currenlty set as the background'
+respring = pygame.image.load('res/restart_icon.png')
+restart = pygame.image.load('res/restart.png')
 logo = pygame.image.load('res/logo.png')
 bg = pygame.image.load(bsetting)
 sd = pygame.image.load('res/shut_down.png')
@@ -113,11 +114,12 @@ def menu_opener():
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
         screen.blit(tskbar, (0,0))
         screen.blit(close, (280,0))
+        screen.blit(respring, (240,0))
         display_text(instlab, black, 15, 20, 285)
         display_text(installeds, black, 15, 0, 285)
-        if installeds == "0":
+        if installed == 0:
             screen.blit(perror, (70,320))
-        if installeds == "1":
+        if installed == 1:
             display_text(p1, black, 15,1,305)
             screen.blit(close, (1,325))
         display_text("Menu", black, 35, 0, 0)
@@ -133,6 +135,7 @@ def menu_opener():
         screen.blit(close, (280, 0))
         screen.blit(logo, (288, 448))
         screen.blit(menu, (0, 440))
+        screen.blit(respring, (240,0))
         display_text("Desktop", black, 35, 0, 0)
         display_text(time, black, 35, 50, 440)
         menuopen = True
@@ -163,6 +166,25 @@ def mainLoop():
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse = pygame.mouse.get_pos()
+                    if mouse[0] < 280:
+                        if mouse[0] > 240:
+                            if mouse[1] < 40:
+                                if mouse[1] > 0:
+                                    # State stuff goes here
+                                    screen.blit(restart, (0,0))
+                                    pygame.display.flip()
+                                    print "Restarting..."
+                                    execfile('boot.py')
+                                    #Put scripts to be ran on shutdown here
+                                    pygame.quit()
+                                    quit()
+                    if mouse[0] > 280:
+                        if mouse[1] < 40:
+                            screen.blit(sd, (0, 0))
+                            pygame.display.flip()
+                            #Put scripts to be ran on shutdown here
+                            pygame.quit()
+                            quit()
                     if mouse[0] < 40:
                         if mouse[0] > 0:
                             if mouse[1] < 480:
@@ -171,10 +193,6 @@ def mainLoop():
                                     curstate = "Menu"
                                     menu_opener()
                     #Temporary quit stuffs for convenience
-                    if mouse[0] > 280:
-                        if mouse[1] < 40:
-                            pygame.quit()
-                            quit()
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
@@ -192,6 +210,15 @@ def mainLoop():
                 for event in pygame.event.get():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         mouse = pygame.mouse.get_pos()
+                        if mouse[0] < 280:
+                            if mouse[0] > 240:
+                                if mouse[1] < 40:
+                                    if mouse[1] > 0:
+                                        # State stuff goes here
+                                        screen.blit(restart, (0,0))
+                                        pygame.display.flip()
+                                        print "Restarting..."
+                                        execfile('boot.py')
                         if mouse[0] < 40:
                             if mouse[0] > 0:
                                 if mouse[1] < 480:
@@ -199,6 +226,7 @@ def mainLoop():
                                         # State stuff goes here
                                         curstate = "Menu"
                                         menu_opener()
+
                         # Temporary quit stuffs for convenience
                         if mouse[0] > 280:
                             if mouse[1] < 40:
@@ -235,6 +263,7 @@ def startup():
     screen.blit(close, (280,0))
     screen.blit(logo, (288,448))
     screen.blit(menu, (0,440))
+    screen.blit(respring, (240,0))
     display_text(time,black,35,50,440)
     pygame.display.flip()
     # Create stuff to log
