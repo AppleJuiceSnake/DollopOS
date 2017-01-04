@@ -6,6 +6,7 @@ import getopt
 import pygame
 from time import strftime
 from subprocess import Popen, PIPE
+
 cp2 = Popen(['git', 'rev-list', '--all', '--count'], stdout=PIPE,stderr=PIPE)
 while cp2.returncode == None:
     currev = str(int(cp2.communicate()[0]))

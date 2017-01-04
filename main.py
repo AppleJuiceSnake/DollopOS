@@ -72,6 +72,10 @@ def display_text(text,color,size,xloc,yloc):
     TextSurf, TextRect = text_objects(text,color,largeText)
     TextRect.topleft = (xloc,yloc)
     screen.blit(TextSurf, TextRect)
+
+start = pygame.image.load('res/start.png')
+screen.blit(start, (0,0))
+pygame.display.flip()
 # To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
 # this area and johnnyw3 or I will decide on whether your changes are acceptable.
