@@ -39,6 +39,8 @@ installeds = parser.get('Programs', 'amount')
 installed = int(installeds)
 pe = parser.get('Programs', 'image')
 perror = pygame.image.load(pe)
+p1 = parser.get('Programs', 'p1')
+p1image = parser.get('Programs', 'p1image')
 
 f = open('settings/installed.txt', 'r+')
 installed = f.read()
@@ -115,6 +117,9 @@ def menu_opener():
         display_text(installeds, black, 15, 0, 285)
         if installeds == "0":
             screen.blit(perror, (70,320))
+        if installeds == "1":
+            display_text(p1, black, 15,1,305)
+            screen.blit(close, (1,325))
         display_text("Menu", black, 35, 0, 0)
         menuopen = False
         pygame.display.flip()
