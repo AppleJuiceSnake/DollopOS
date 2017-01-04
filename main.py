@@ -45,6 +45,8 @@ p1image = parser.get('Programs', 'p1image')
 
 
 print bgsetting , 'is currenlty set as the background'
+dbtb = pygame.image.load('res/desktop_tb_icon.png')
+mtb = pygame.image.load('res/menu_tb_icon.png')
 respring = pygame.image.load('res/restart_icon.png')
 restart = pygame.image.load('res/restart.png')
 logo = pygame.image.load('res/logo.png')
@@ -122,7 +124,8 @@ def menu_opener():
         if installed == 1:
             display_text(p1, black, 15,1,305)
             screen.blit(close, (1,325))
-        display_text("Menu", black, 35, 0, 0)
+        display_text("Menu", black, 35, 50, 0)
+        screen.blit(mtb, (0,0))
         menuopen = False
         pygame.display.flip()
         menuopen = False
@@ -136,7 +139,8 @@ def menu_opener():
         screen.blit(logo, (288, 448))
         screen.blit(menu, (0, 440))
         screen.blit(respring, (240,0))
-        display_text("Desktop", black, 35, 0, 0)
+        display_text("Desktop", black, 35, 50, 0)
+        screen.blit(dbtb, (0,0))
         display_text(time, black, 35, 50, 440)
         menuopen = True
         pygame.display.flip()
@@ -201,7 +205,8 @@ def mainLoop():
                 screen.blit(tskbar, (0, 0))
                 display_text(time, black, 35, 50, 440)
                 screen.blit(logo, (280, 0))
-            display_text("Desktop",black,35,0,0)
+            display_text("Desktop",black,35,50,0)
+            screen.blit(dbtb, (0,0))
             pygame.display.flip()
             clock.tick(currentSpeed)
             pygame.draw.rect(screen, red,(550,450,100,50))
@@ -264,6 +269,7 @@ def startup():
     screen.blit(logo, (288,448))
     screen.blit(menu, (0,440))
     screen.blit(respring, (240,0))
+    screen.blit(dbtb, (0,0))
     display_text(time,black,35,50,440)
     pygame.display.flip()
     # Create stuff to log
