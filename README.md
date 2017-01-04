@@ -7,6 +7,8 @@ Be aware that this is in pre-alpha stages, and has very limited functionally
 # How To Use DollopOS
 Make sure you run "python boot.py" to start DollopOS
 
+If it fails to start, make sure that you have PyGame installed
+
 Various settings can be changed by changing the contents of the .ini files in the settings folder.
 
 To shut down safely, use the "x button" that is in the actual pygame window, don't close the window
