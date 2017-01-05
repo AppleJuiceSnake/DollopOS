@@ -45,6 +45,8 @@ p1image = parser.get('Programs', 'p1image')
 
 
 print bgsetting , 'is currenlty set as the background'
+ab = pygame.image.load('res/about.png')
+abtb = pygame.image.load('res/about_tb_icon.png')
 dbtb = pygame.image.load('res/desktop_tb_icon.png')
 mtb = pygame.image.load('res/menu_tb_icon.png')
 respring = pygame.image.load('res/restart_icon.png')
@@ -148,6 +150,29 @@ def menu_opener():
         display_text(time, black, 35, 50, 440)
         menuopen = True
         pygame.display.flip()
+
+def about():
+    aboutopened = True
+    curstate = "Menu"
+    screen.blit(ab, (0,0))
+    screen.blit(tskbar, (0, 440))
+    screen.blit(tskbar, (0, 0))
+    screen.blit(close, (280, 0))
+    screen.blit(logo, (288, 448))
+    screen.blit(menu, (0, 440))
+    screen.blit(respring, (240,0))
+    display_text(time, black, 35, 50, 440)
+    screen.blit(abtb, (0,0))
+    display_text("About", black, 35, 50, 0)
+    display_text('About DollopOS', white, 30, 40, 80)
+    display_text('Use this area to put some sogan...', white, 15, 35, 125)
+    display_text('Current Revision:', white, 30, 0, 150)
+    display_text('DollopOS is licenced under GPL 3.0', white, 15, 35, 390)
+    display_text('AppleJuiceSnake, 2016-2017', white, 13, 60, 410)
+    display_text(currev, white, 30, 260, 150)
+    pygame.display.flip()
+
+
 # Speed Control
 clock = pygame.time.Clock()
 defaultSpeed = 60
@@ -200,6 +225,13 @@ def mainLoop():
                                     #State stuff goes here
                                     curstate = "Menu"
                                     menu_opener()
+                    if mouse[0] < 320:
+                        if mouse[0] > 280:
+                            if mouse[1] < 480:
+                                if mouse[1] > 440:
+                                    #State stuff goes here
+                                    curstate = "Menu"
+                                    about()
                     #Temporary quit stuffs for convenience
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -228,6 +260,13 @@ def mainLoop():
                                         pygame.display.flip()
                                         print "Restarting..."
                                         execfile('boot.py')
+                        if mouse[0] < 320:
+                            if mouse[0] > 280:
+                                if mouse[1] < 480:
+                                    if mouse[1] > 440:
+                                        #State stuff goes here
+                                        curstate = "Menu"
+                                        about()
                         if mouse[0] < 40:
                             if mouse[0] > 0:
                                 if mouse[1] < 480:
