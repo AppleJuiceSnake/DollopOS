@@ -11,7 +11,7 @@ If it fails to start, make sure that you have PyGame installed
 
 Various settings can be changed by changing the contents of the .ini files in the settings folder.
 
-To shut down safely, use the "x button" that is in the actual pygame window, don't close the window
+To shut down safely, use the shutdown icon that is in the actual pygame window, don't just close the window
 
 
 # Other Information
