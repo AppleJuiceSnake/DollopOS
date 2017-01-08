@@ -17,6 +17,8 @@ while cp2.returncode == None:
 
 
 #Constants
+aboutopen = 'False'
+aboutopened = False
 menuopen = True
 fullscr = False
 started = False
@@ -42,6 +44,7 @@ pe = parser.get('Programs', 'image')
 perror = pygame.image.load(pe)
 p1 = parser.get('Programs', 'p1')
 p1image = parser.get('Programs', 'p1image')
+aboutopen = parser.get("Programs", 'aboutopen')
 
 
 print bgsetting , 'is currenlty set as the background'
@@ -152,6 +155,8 @@ def menu_opener():
         pygame.display.flip()
 
 def about():
+    global aboutopened
+    aboutopen = "True"
     aboutopened = True
     curstate = "Menu"
     screen.blit(ab, (0,0))
@@ -193,6 +198,9 @@ pygame.display.set_caption('DollopOS Rev ' + str(int(currev)))
 def mainLoop():
     global time
     global curstate
+    global aboutopened
+    global event
+    global menuopen
     while True:
         if curstate == "":
             menuopen = False
@@ -213,6 +221,9 @@ def mainLoop():
                                     quit()
                     if mouse[0] > 280:
                         if mouse[1] < 40:
+                            if aboutopened:
+                                aboutopened = False
+                                startup()
                             screen.blit(sd, (0, 0))
                             pygame.display.flip()
                             #Put scripts to be ran on shutdown here
@@ -279,12 +290,18 @@ def mainLoop():
                         if mouse[0] > 280:
                             if mouse[1] < 40:
                                 if not menuopen:
+                                    if aboutopened:
+                                        aboutopened = False
+                                        startup()
                                     screen.blit(sd, (0, 0))
                                     pygame.display.flip()
                                     #Put scripts to be ran on shutdown here
                                     pygame.quit()
                                     quit()
                                 if menuopen:
+                                    if aboutopened:
+                                        aboutopened = False
+                                        startup()
                                     screen.blit(sd, (0, 0))
                                     pygame.display.flip()
                                     #Put scripts to be ran on shutdown here
