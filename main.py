@@ -48,6 +48,7 @@ aboutopen = parser.get("Programs", 'aboutopen')
 
 
 print bgsetting , 'is currenlty set as the background'
+sdicon = pygame.image.load('res/shutdown_icon.png')
 ab = pygame.image.load('res/about.png')
 abtb = pygame.image.load('res/about_tb_icon.png')
 dbtb = pygame.image.load('res/desktop_tb_icon.png')
@@ -118,13 +119,17 @@ lightred = (255,0,64)
 # Image Functions
 def menu_opener():
     global menuopen
+    global aboutopened
     if menuopen:
         curstate = "Menu"
         #Set up the background for the menu before drawing absolutly anything else.
         pygame.draw.rect(screen, gray,(0,280,200,160))
         screen.blit(pygame.transform.flip(menu,False,True), (0,440))
         screen.blit(tskbar, (0,0))
-        screen.blit(close, (280,0))
+        if aboutopened:
+            screen.blit(close, (280,0))
+        if not aboutopened:
+            screen.blit(sdicon, (280,0))
         screen.blit(respring, (240,0))
         display_text(instlab, black, 15, 20, 285)
         display_text(installeds, black, 15, 0, 285)
@@ -144,7 +149,10 @@ def menu_opener():
         screen.blit(bg, (1, 1))
         screen.blit(tskbar, (0, 440))
         screen.blit(tskbar, (0, 0))
-        screen.blit(close, (280, 0))
+        if aboutopened:
+            screen.blit(close, (280,0))
+        if not aboutopened:
+            screen.blit(sdicon, (280,0))
         screen.blit(logo, (288, 448))
         screen.blit(menu, (0, 440))
         screen.blit(respring, (240,0))
@@ -162,7 +170,10 @@ def about():
     screen.blit(ab, (0,0))
     screen.blit(tskbar, (0, 440))
     screen.blit(tskbar, (0, 0))
-    screen.blit(close, (280, 0))
+    if aboutopened:
+        screen.blit(close, (280,0))
+    if not aboutopened:
+        screen.blit(sdicon, (280,0))
     screen.blit(logo, (288, 448))
     screen.blit(menu, (0, 440))
     screen.blit(respring, (240,0))
@@ -322,10 +333,14 @@ def mainLoop():
         clock.tick(currentSpeed)
 
 def startup():
+    global aboutopened
     screen.blit(bg, (1, 1))
     screen.blit(tskbar, (0,440))
     screen.blit(tskbar, (0,0))
-    screen.blit(close, (280,0))
+    if aboutopened:
+        screen.blit(close, (280,0))
+    if not aboutopened:
+        screen.blit(sdicon, (280,0))
     screen.blit(logo, (288,448))
     screen.blit(menu, (0,440))
     screen.blit(respring, (240,0))
