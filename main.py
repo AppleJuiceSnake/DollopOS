@@ -214,8 +214,9 @@ def areyousure():
     screen.blit(respring, (240,0))
     display_text(time, black, 35, 50, 440)
     screen.blit(warning, (0,0))
-    display_text('Are you sure you want to', white, 15, 45, 125)
-    display_text(action, white, 15, 225, 125)
+    display_text('Are you sure you want to', white, 15, 30, 125)
+    display_text('?', white, 15, 290, 125)
+    display_text(action, white, 15, 210, 125)
     pygame.draw.rect(screen, teal,(20,220,90,50))
     pygame.draw.rect(screen, teal,(200,220,90,50))
     display_text('Yes', white, 35, 40, 220)
@@ -399,9 +400,7 @@ def mainLoop():
                 quit()
         if not time == strftime("%I:%M", localtime()):
             time = strftime("%I:%M", localtime())
-            screen.blit(tskbar, (0,0))
             display_text(time,black,35,50,440)
-            screen.blit(logo, (280,0))
         pygame.display.flip()
         clock.tick(currentSpeed)
 
