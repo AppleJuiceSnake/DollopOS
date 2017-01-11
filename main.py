@@ -49,6 +49,7 @@ aboutopen = parser.get("Programs", 'aboutopen')
 action = ''
 confopen = False
 print bgsetting , 'is currenlty set as the background'
+rotate = pygame.image.load('res/rotate.png')
 cover = pygame.image.load('res/cover.png')
 warning = pygame.image.load('res/warning.png')
 sdicon = pygame.image.load('res/shutdown_icon.png')
@@ -159,6 +160,7 @@ def menu_opener():
         screen.blit(logo, (288, 448))
         screen.blit(menu, (0, 440))
         screen.blit(respring, (240,0))
+        screen.blit(rotate, (240,440))
         display_text("Desktop", black, 35, 50, 0)
         screen.blit(dbtb, (0,0))
         display_text(time, black, 35, 50, 440)
@@ -181,6 +183,7 @@ def about():
     screen.blit(logo, (288, 448))
     screen.blit(menu, (0, 440))
     screen.blit(respring, (240,0))
+    screen.blit(rotate, (240,440))
     display_text(time, black, 35, 50, 440)
     screen.blit(abtb, (0,0))
     display_text("About", black, 35, 50, 0)
@@ -212,6 +215,7 @@ def areyousure():
     screen.blit(logo, (288, 448))
     screen.blit(menu, (0, 440))
     screen.blit(respring, (240,0))
+    screen.blit(rotate, (240,440))
     display_text(time, black, 35, 50, 440)
     screen.blit(warning, (0,0))
     display_text('Are you sure you want to', white, 15, 30, 125)
@@ -322,9 +326,7 @@ def mainLoop():
                     quit()
             if not time == strftime("%I:%M", localtime()):
                 time = strftime("%I:%M", localtime())
-                screen.blit(tskbar, (0, 0))
                 display_text(time, black, 35, 50, 440)
-                screen.blit(logo, (280, 0))
             display_text("Desktop",black,35,50,0)
             screen.blit(dbtb, (0,0))
             pygame.display.flip()
@@ -416,6 +418,7 @@ def startup():
     screen.blit(logo, (288,448))
     screen.blit(menu, (0,440))
     screen.blit(respring, (240,0))
+    screen.blit(rotate, (240,440))
     screen.blit(dbtb, (0,0))
     display_text(time,black,35,50,440)
     pygame.display.flip()
@@ -423,7 +426,6 @@ def startup():
     print "Current Platform: ", sys.platform
     print "Current Revision: ", currev
     print "Pygame Version", pygame.ver
-    
     mainLoop()
 startup()
 

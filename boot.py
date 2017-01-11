@@ -14,6 +14,7 @@ if not os.path.exists(os.path.join(os.getcwd(), "logs")):
     os.makedirs(os.path.join(os.getcwd(), "logs"))
 def start():
     logg = open(os.path.join(os.getcwd(),"logs",strftime("%Y_%-m_%-d_%-I_%-M_%-S_dollop-os.log"),), "w+")
+    logg.write("DollopOS is now starting up...")
     print "Current Platform: ", sys.platform
     print "Current Revision: ", currev
     print "Pygame Version", pygame.ver
