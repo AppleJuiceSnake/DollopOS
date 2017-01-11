@@ -46,8 +46,11 @@ p1 = parser.get('Programs', 'p1')
 p1image = parser.get('Programs', 'p1image')
 aboutopen = parser.get("Programs", 'aboutopen')
 
-
+action = ''
+confopen = False
 print bgsetting , 'is currenlty set as the background'
+cover = pygame.image.load('res/cover.png')
+warning = pygame.image.load('res/warning.png')
 sdicon = pygame.image.load('res/shutdown_icon.png')
 ab = pygame.image.load('res/about.png')
 abtb = pygame.image.load('res/about_tb_icon.png')
@@ -167,6 +170,7 @@ def about():
     aboutopen = "True"
     aboutopened = True
     curstate = "Menu"
+    screen.blit(cover, (0,0))
     screen.blit(ab, (0,0))
     screen.blit(tskbar, (0, 440))
     screen.blit(tskbar, (0, 0))
@@ -187,6 +191,34 @@ def about():
     display_text('AppleJuiceSnake, 2016-2017', white, 13, 60, 410)
     display_text(currev, white, 30, 260, 150)
     pygame.display.flip()
+
+def areyousure():
+    global event
+    global time
+    global aboutopened
+    global confopen
+    global action
+    curstate = ""
+    screen.blit(tskbar, (0, 440))
+    screen.blit(tskbar, (0, 0))
+    if aboutopened:
+        screen.blit(close, (280,0))
+    if not aboutopened:
+        screen.blit(sdicon, (280,0))
+    screen.blit(logo, (288, 448))
+    screen.blit(menu, (0, 440))
+    screen.blit(respring, (240,0))
+    display_text(time, black, 35, 50, 440)
+    screen.blit(warning, (0,0))
+    display_text('Are you sure you want to', white, 15, 45, 125)
+    display_text(action, white, 15, 225, 125)
+    display_text('Yes', white, 35, 40, 220)
+    display_text('No', white, 35, 220, 220)
+    pygame.display.flip()
+    confopen = True
+    mainLoop()
+
+   
 
 
 # Speed Control
@@ -212,6 +244,8 @@ def mainLoop():
     global aboutopened
     global event
     global menuopen
+    global confopen
+    global action
     while True:
         if curstate == "":
             menuopen = False
@@ -222,6 +256,8 @@ def mainLoop():
                         if mouse[0] > 240:
                             if mouse[1] < 40:
                                 if mouse[1] > 0:
+                                    action = "Restart"
+                                    areyousure()
                                     # State stuff goes here
                                     screen.blit(restart, (0,0))
                                     pygame.display.flip()
@@ -230,11 +266,42 @@ def mainLoop():
                                     #Put scripts to be ran on shutdown here
                                     pygame.quit()
                                     quit()
+                    if mouse[0] < 80:
+                        if mouse[0] > 0:
+                            if mouse[1] < 280:
+                                if mouse[1] > 220:
+                                    if confopen:
+                                        if action == "Shut Down":
+                                            screen.blit(sd, (0,0))
+                                            pygame.display.flip()
+                                            pygame.quit()
+                                            quit()
+                                        if action == "Restart":
+                                            screen.blit(restart, (0,0))
+                                            pygame.display.flip()
+                                            print "Restarting..."
+                                            execfile('boot.py')
+                                            #Put scripts to be ran on shutdown here
+                                            pygame.quit()
+                                            quit()
+                                    if not confopen:
+                                        mainLoop()
+                    if mouse[0] < 320:
+                        if mouse[0] > 220:
+                            if mouse[1] < 280:
+                                if mouse[1] > 220:
+                                    if confopen:
+                                        confopen = False
+                                        startup()
+                                    if not confopen:
+                                        mainLoop()
                     if mouse[0] > 280:
                         if mouse[1] < 40:
                             if aboutopened:
                                 aboutopened = False
                                 startup()
+                            action = 'Shut Down'
+                            areyousure()
                             screen.blit(sd, (0, 0))
                             pygame.display.flip()
                             #Put scripts to be ran on shutdown here
@@ -304,6 +371,7 @@ def mainLoop():
                                     if aboutopened:
                                         aboutopened = False
                                         startup()
+                                    areyousure()
                                     screen.blit(sd, (0, 0))
                                     pygame.display.flip()
                                     #Put scripts to be ran on shutdown here
