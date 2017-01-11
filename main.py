@@ -197,14 +197,18 @@ def areyousure():
     global time
     global aboutopened
     global confopen
+    global curstate
     global action
     curstate = ""
+    screen.blit(cover,(0, 0))
     screen.blit(tskbar, (0, 440))
     screen.blit(tskbar, (0, 0))
     if aboutopened:
         screen.blit(close, (280,0))
     if not aboutopened:
         screen.blit(sdicon, (280,0))
+    if curstate == "Menu":
+        display_text("Warning", black, 35, 50, 0)
     screen.blit(logo, (288, 448))
     screen.blit(menu, (0, 440))
     screen.blit(respring, (240,0))
@@ -212,6 +216,8 @@ def areyousure():
     screen.blit(warning, (0,0))
     display_text('Are you sure you want to', white, 15, 45, 125)
     display_text(action, white, 15, 225, 125)
+    pygame.draw.rect(screen, teal,(20,220,90,50))
+    pygame.draw.rect(screen, teal,(200,220,90,50))
     display_text('Yes', white, 35, 40, 220)
     display_text('No', white, 35, 220, 220)
     pygame.display.flip()
@@ -258,14 +264,6 @@ def mainLoop():
                                 if mouse[1] > 0:
                                     action = "Restart"
                                     areyousure()
-                                    # State stuff goes here
-                                    screen.blit(restart, (0,0))
-                                    pygame.display.flip()
-                                    print "Restarting..."
-                                    execfile('boot.py')
-                                    #Put scripts to be ran on shutdown here
-                                    pygame.quit()
-                                    quit()
                     if mouse[0] < 80:
                         if mouse[0] > 0:
                             if mouse[1] < 280:
@@ -274,6 +272,7 @@ def mainLoop():
                                         if action == "Shut Down":
                                             screen.blit(sd, (0,0))
                                             pygame.display.flip()
+                                            #Shutdown Scripts Here!
                                             pygame.quit()
                                             quit()
                                         if action == "Restart":
@@ -302,11 +301,6 @@ def mainLoop():
                                 startup()
                             action = 'Shut Down'
                             areyousure()
-                            screen.blit(sd, (0, 0))
-                            pygame.display.flip()
-                            #Put scripts to be ran on shutdown here
-                            pygame.quit()
-                            quit()
                     if mouse[0] < 40:
                         if mouse[0] > 0:
                             if mouse[1] < 480:
@@ -340,15 +334,33 @@ def mainLoop():
                 for event in pygame.event.get():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         mouse = pygame.mouse.get_pos()
+                        if mouse[0] < 80:
+                            if mouse[0] > 0:
+                                if mouse[1] < 280:
+                                    if mouse[1] > 220:
+                                        if confopen:
+                                            if action == "Shut Down":
+                                                screen.blit(sd, (0,0))
+                                                pygame.display.flip()
+                                                #Shutdown Scripts Here!
+                                                pygame.quit()
+                                                quit()
+                                            if action == "Restart":
+                                                screen.blit(restart, (0,0))
+                                                pygame.display.flip()
+                                                print "Restarting..."
+                                                execfile('boot.py')
+                                                #Put scripts to be ran on shutdown here
+                                                pygame.quit()
+                                                quit()
+                                        if not confopen:
+                                            mainLoop()
                         if mouse[0] < 280:
                             if mouse[0] > 240:
                                 if mouse[1] < 40:
                                     if mouse[1] > 0:
-                                        # State stuff goes here
-                                        screen.blit(restart, (0,0))
-                                        pygame.display.flip()
-                                        print "Restarting..."
-                                        execfile('boot.py')
+                                        action = "Restart"
+                                        areyousure()
                         if mouse[0] < 320:
                             if mouse[0] > 280:
                                 if mouse[1] < 480:
@@ -371,21 +383,14 @@ def mainLoop():
                                     if aboutopened:
                                         aboutopened = False
                                         startup()
+                                    action = "Shut Down"
                                     areyousure()
-                                    screen.blit(sd, (0, 0))
-                                    pygame.display.flip()
-                                    #Put scripts to be ran on shutdown here
-                                    pygame.quit()
-                                    quit()
                                 if menuopen:
                                     if aboutopened:
                                         aboutopened = False
                                         startup()
-                                    screen.blit(sd, (0, 0))
-                                    pygame.display.flip()
-                                    #Put scripts to be ran on shutdown here
-                                    pygame.quit()
-                                    quit()
+                                    action = "Shut Down"
+                                    areyousure()
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         quit()
