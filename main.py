@@ -283,11 +283,10 @@ def mainLoop():
                                         if action == "Restart":
                                             screen.blit(restart, (0,0))
                                             pygame.display.flip()
-                                            print "Restarting..."
-                                            execfile('boot.py')
-                                            #Put scripts to be ran on shutdown here
-                                            pygame.quit()
-                                            quit()
+                                            #Put Restart scripts here since 'print "restart"'
+                                            #basically makes a call to the boot.py
+                                            #to restart the script/system
+                                            print "restart"
                                     if not confopen:
                                         mainLoop()
                     if mouse[0] < 320:
@@ -345,7 +344,9 @@ def mainLoop():
                                             if action == "Shut Down":
                                                 screen.blit(sd, (0,0))
                                                 pygame.display.flip()
-                                                #Shutdown Scripts Here!
+                                                #Shutdown Scripts Here! 
+                                                #Make it wait here -Atmatm6
+                                                pygame.time.wait(5000)
                                                 pygame.quit()
                                                 quit()
                                             if action == "Restart":
@@ -428,4 +429,3 @@ def startup():
     print "Pygame Version", pygame.ver
     mainLoop()
 startup()
-

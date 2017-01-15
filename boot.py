@@ -21,7 +21,7 @@ def start():
     logg.write("Platfrom:")
     logg.write(sys.platform)
     logg.write("\n")
-    logg.write("Pevision:")
+    logg.write("Revision:")
     logg.write(currev)
     logg.write("\n")
     logg.write("Pygame Version:")
@@ -30,9 +30,12 @@ def start():
 
     process = subprocess.Popen("python main.py", shell=True, stdout=subprocess.PIPE)
     while process.returncode == None:
+        print process.communicate()[0]
         if process.communicate()[0] == "restart":
+            process.kill()
             start()
         logg.write(process.communicate()[0])
+
     if (process.returncode == 0):
         exit()
     else:
