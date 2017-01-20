@@ -438,6 +438,6 @@ def startup():
     mainLoop()
 
 
-# Changing to landccape mode
+# Changing to landccape mode:
 # parser.set('landscape', 'enabled', 'True')
 startup()
