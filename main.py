@@ -76,7 +76,7 @@ lanbg = pygame.image.load(lanbsetting)
 pygame.init()
 pygame.font.init()
 scrsize = (scr_width, scr_height)
-if not fullscr:
+if fullscr == "False":
     screen = pygame.display.set_mode(scrsize)
 else:
     screen = pygame.display.set_mode(scrsize, pygame.FULLSCREEN)
