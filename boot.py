@@ -31,7 +31,7 @@ def start():
     process = subprocess.Popen("python main.py", shell=True, stdout=subprocess.PIPE)
     while process.returncode == None:
         print process.communicate()[0]
-        if process.communicate()[0] == "restart":
+        if process.communicate()[0] == "Restarting...":
             process.kill()
             start()
         logg.write(process.communicate()[0])
