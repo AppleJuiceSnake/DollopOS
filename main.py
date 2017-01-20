@@ -86,6 +86,9 @@ def display_text(text,color,size,xloc,yloc):
 start = pygame.image.load('res/start.png')
 screen.blit(start, (0,0))
 pygame.display.flip()
+
+# Load it back up for landscape mode
+parser.read('settings/display.ini')
 # To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
 # this area and johnnyw3 or I will decide on whether your changes are acceptable.
@@ -286,7 +289,7 @@ def mainLoop():
                                             #Put Restart scripts here since 'print "restart"'
                                             #basically makes a call to the boot.py
                                             #to restart the script/system
-                                            print "restart"
+                                            print "Restarting..."
                                     if not confopen:
                                         mainLoop()
                     if mouse[0] < 320:
@@ -409,23 +412,32 @@ def mainLoop():
 
 def startup():
     global aboutopened
-    screen.blit(bg, (1, 1))
-    screen.blit(tskbar, (0,440))
-    screen.blit(tskbar, (0,0))
-    if aboutopened:
-        screen.blit(close, (280,0))
-    if not aboutopened:
-        screen.blit(sdicon, (280,0))
-    screen.blit(logo, (288,448))
-    screen.blit(menu, (0,440))
-    screen.blit(respring, (240,0))
-    screen.blit(rotate, (240,440))
-    screen.blit(dbtb, (0,0))
-    display_text(time,black,35,50,440)
-    pygame.display.flip()
+    landen = parser.get('Landscape', 'enabled')
+    if landen == "True":
+        #Put landscape screen settings here
+        print "landen is on..."
+    if landen == "False":
+        screen.blit(bg, (1, 1))
+        screen.blit(tskbar, (0,440))
+        screen.blit(tskbar, (0,0))
+        if aboutopened:
+            screen.blit(close, (280,0))
+        if not aboutopened:
+            screen.blit(sdicon, (280,0))
+        screen.blit(logo, (288,448))
+        screen.blit(menu, (0,440))
+        screen.blit(respring, (240,0))
+        screen.blit(rotate, (240,440))
+        screen.blit(dbtb, (0,0))
+        display_text(time,black,35,50,440)
+        pygame.display.flip()
     # Create stuff to log
     print "Current Platform: ", sys.platform
     print "Current Revision: ", currev
     print "Pygame Version", pygame.ver
     mainLoop()
+
+
+# Changing to landccape mode
+# parser.set('landscape', 'enabled', 'True')
 startup()

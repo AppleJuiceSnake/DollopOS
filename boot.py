@@ -7,6 +7,7 @@ import pygame
 from time import strftime
 from subprocess import Popen, PIPE
 aboutopen = "False"
+restarted = False
 cp2 = Popen(['git', 'rev-list', '--all', '--count'], stdout=PIPE,stderr=PIPE)
 while cp2.returncode == None:
     currev = str(int(cp2.communicate()[0]))
@@ -32,6 +33,8 @@ def start():
     while process.returncode == None:
         print process.communicate()[0]
         if process.communicate()[0] == "Restarting...":
+            global restarted
+            restarted = True
             process.kill()
             start()
         logg.write(process.communicate()[0])
