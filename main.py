@@ -20,7 +20,6 @@ while cp2.returncode == None:
 aboutopen = 'False'
 aboutopened = False
 menuopen = True
-fullscr = False
 started = False
 time = strftime("%I:%M", localtime())
 curstate = ""
@@ -28,10 +27,15 @@ curstate = ""
 parser = SafeConfigParser()
 parser.read('settings/display.ini')
 
+
 bgsetting =  parser.get('Background', 'image')
+fullscr = parser.get('Resoultion', 'Fullscreen')
+lanbsetting =  parser.get('Background', 'landscape_image')
 bsetting =  parser.get('Background', 'image')
 scr_widths = parser.get('Resoultion', 'width')
 scr_heights = parser.get('Resoultion', 'Height')
+lan_widths = parser.get('Landscape', "width")
+lan_heights = parser.get('Landscape', "Height")
 scr_width = int(scr_widths)
 scr_height = int(scr_heights)
 
@@ -65,6 +69,9 @@ sd = pygame.image.load('res/shut_down.png')
 tskbar = pygame.image.load('res/taskbar.png')
 menu = pygame.image.load('res/menu_icon.png')
 close = pygame.image.load('res/close_icon.png')
+lantb = pygame.image.load('res/landscape_mode/taskbar(landscape).png')
+manutb = pygame.image.load('res/landscape_mode/menu_icon(landscape).png')
+lanbg = pygame.image.load(lanbsetting)
 # Set up pygame
 pygame.init()
 pygame.font.init()
@@ -415,6 +422,7 @@ def startup():
     landen = parser.get('Landscape', 'enabled')
     if landen == "True":
         #Put landscape screen settings here
+
         print "landen is on..."
     if landen == "False":
         screen.blit(bg, (1, 1))
