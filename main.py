@@ -52,7 +52,7 @@ aboutopen = parser.get("Programs", 'aboutopen')
 
 action = ''
 confopen = False
-print bgsetting , 'is currenlty set as the background'
+print (bgsetting) , 'is currenlty set as the background'
 rotate = pygame.image.load('res/rotate.png')
 cover = pygame.image.load('res/cover.png')
 warning = pygame.image.load('res/warning.png')
@@ -251,7 +251,7 @@ def setSpeed(speed):
         speed += 0
         currentSpeed = speed
     except TypeError:
-        print "HEY! THE SPEED IN setSpeed() IS SUPPOSED TO BE A NUMBER!"
+        print ("HEY! THE SPEED IN setSpeed() IS SUPPOSED TO BE A NUMBER!")
 def getSpeed():
     return currentSpeed
 # Window Title
@@ -296,7 +296,7 @@ def mainLoop():
                                             #Put Restart scripts here since 'print "restart"'
                                             #basically makes a call to the boot.py
                                             #to restart the script/system
-                                            print "Restarting..."
+                                            print ("Restarting...")
                                     if not confopen:
                                         mainLoop()
                     if mouse[0] < 320:
@@ -362,7 +362,7 @@ def mainLoop():
                                             if action == "Restart":
                                                 screen.blit(restart, (0,0))
                                                 pygame.display.flip()
-                                                print "Restarting..."
+                                                print ("Restarting...")
                                                 execfile('boot.py')
                                                 #Put scripts to be ran on shutdown here
                                                 pygame.quit()
@@ -423,7 +423,7 @@ def startup():
     if landen == "True":
         #Put landscape screen settings here
 
-        print "landen is on..."
+        print ("landen is on...")
     if landen == "False":
         screen.blit(bg, (1, 1))
         screen.blit(tskbar, (0,440))
@@ -440,9 +440,9 @@ def startup():
         display_text(time,black,35,50,440)
         pygame.display.flip()
     # Create stuff to log
-    print "Current Platform: ", sys.platform
-    print "Current Revision: ", currev
-    print "Pygame Version", pygame.ver
+    print ("Current Platform: ", sys.platform)
+    print ("Current Revision: ", currev)
+    print ("Pygame Version", pygame.ver)
     mainLoop()
 
 
