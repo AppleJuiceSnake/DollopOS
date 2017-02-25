@@ -1,9 +1,7 @@
 # modules,modules,modules
 import os
 import sys
-import getopt
 import pygame
-import ConfigParser
 import io
 import subprocess
 from time import sleep
@@ -14,7 +12,6 @@ from subprocess import Popen, PIPE
 cp2 = Popen(['git', 'rev-list', '--all', '--count'], stdout=PIPE,stderr=PIPE)
 while cp2.returncode == None:
     currev = str(int(cp2.communicate()[0]))
-
 
 #Constants
 aboutopen = 'False'
@@ -43,13 +40,14 @@ parser.read("settings/installed.ini")
 
 instlab = "programs are installed"
 installeds = parser.get('Programs', 'amount')
-installed = int(installeds)
+installed = str(installeds)
 pe = parser.get('Programs', 'image')
 perror = pygame.image.load(pe)
 p1 = parser.get('Programs', 'p1')
 p1image = parser.get('Programs', 'p1image')
 aboutopen = parser.get("Programs", 'aboutopen')
 
+runningBootPy
 action = ''
 confopen = False
 print (bgsetting) , 'is currenlty set as the background'
@@ -72,6 +70,11 @@ close = pygame.image.load('res/close_icon.png')
 lantb = pygame.image.load('res/landscape_mode/taskbar(landscape).png')
 manutb = pygame.image.load('res/landscape_mode/menu_icon(landscape).png')
 lanbg = pygame.image.load(lanbsetting)
+# Check if running under boot.py (because you can run it without logging)
+if sys.argv[0] == "booting":
+    runningBootPy = True
+else:
+    runningBootPy = False
 # Set up pygame
 pygame.init()
 pygame.font.init()
@@ -228,7 +231,7 @@ def areyousure():
     screen.blit(rotate, (240,440))
     display_text(time, black, 35, 50, 440)
     screen.blit(warning, (0,0))
-    display_text('Are you sure you want to', white, 15, 30, 125)
+    display_text('Are you sure you want to ', white, 15, 30, 125)
     display_text('?', white, 15, 290, 125)
     display_text(action, white, 15, 210, 125)
     pygame.draw.rect(screen, teal,(20,220,90,50))
@@ -363,7 +366,6 @@ def mainLoop():
                                                 screen.blit(restart, (0,0))
                                                 pygame.display.flip()
                                                 print ("Restarting...")
-                                                execfile('boot.py')
                                                 #Put scripts to be ran on shutdown here
                                                 pygame.quit()
                                                 quit()
@@ -422,8 +424,8 @@ def startup():
     landen = parser.get('Landscape', 'enabled')
     if landen == "True":
         #Put landscape screen settings here
-
-        print ("landen is on...")
+        print ("Landscape is on, but not yet implemented.")
+        landen = "False" #To make sure the user gets some sort of experience
     if landen == "False":
         screen.blit(bg, (1, 1))
         screen.blit(tskbar, (0,440))
