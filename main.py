@@ -27,12 +27,9 @@ parser.read('settings/display.ini')
 
 bgsetting =  parser.get('Background', 'image')
 fullscr = parser.get('Resoultion', 'Fullscreen')
-lanbsetting =  parser.get('Background', 'landscape_image')
 bsetting =  parser.get('Background', 'image')
 scr_widths = parser.get('Resoultion', 'width')
 scr_heights = parser.get('Resoultion', 'Height')
-lan_widths = parser.get('Landscape', "width")
-lan_heights = parser.get('Landscape', "Height")
 scr_width = int(scr_widths)
 scr_height = int(scr_heights)
 
@@ -46,12 +43,9 @@ perror = pygame.image.load(pe)
 p1 = parser.get('Programs', 'p1')
 p1image = parser.get('Programs', 'p1image')
 aboutopen = parser.get("Programs", 'aboutopen')
-
-runningBootPy
 action = ''
 confopen = False
 print (bgsetting) , 'is currenlty set as the background'
-rotate = pygame.image.load('res/rotate.png')
 cover = pygame.image.load('res/cover.png')
 warning = pygame.image.load('res/warning.png')
 sdicon = pygame.image.load('res/shutdown_icon.png')
@@ -67,9 +61,6 @@ sd = pygame.image.load('res/shut_down.png')
 tskbar = pygame.image.load('res/taskbar.png')
 menu = pygame.image.load('res/menu_icon.png')
 close = pygame.image.load('res/close_icon.png')
-lantb = pygame.image.load('res/landscape_mode/taskbar(landscape).png')
-manutb = pygame.image.load('res/landscape_mode/menu_icon(landscape).png')
-lanbg = pygame.image.load(lanbsetting)
 # Check if running under boot.py (because you can run it without logging)
 if sys.argv[0] == "booting":
     runningBootPy = True
@@ -97,7 +88,6 @@ start = pygame.image.load('res/start.png')
 screen.blit(start, (0,0))
 pygame.display.flip()
 
-# Load it back up for landscape mode
 parser.read('settings/display.ini')
 # To add more colors, go to www.colorschemer.com/online.html or another color palette
 # with the ability to see the RGB values. Then fork the Github Repo and modify 
@@ -173,7 +163,6 @@ def menu_opener():
         screen.blit(logo, (288, 448))
         screen.blit(menu, (0, 440))
         screen.blit(respring, (240,0))
-        screen.blit(rotate, (240,440))
         display_text("Desktop", black, 35, 50, 0)
         screen.blit(dbtb, (0,0))
         display_text(time, black, 35, 50, 440)
@@ -196,7 +185,6 @@ def about():
     screen.blit(logo, (288, 448))
     screen.blit(menu, (0, 440))
     screen.blit(respring, (240,0))
-    screen.blit(rotate, (240,440))
     display_text(time, black, 35, 50, 440)
     screen.blit(abtb, (0,0))
     display_text("About", black, 35, 50, 0)
@@ -228,7 +216,6 @@ def areyousure():
     screen.blit(logo, (288, 448))
     screen.blit(menu, (0, 440))
     screen.blit(respring, (240,0))
-    screen.blit(rotate, (240,440))
     display_text(time, black, 35, 50, 440)
     screen.blit(warning, (0,0))
     display_text('Are you sure you want to ', white, 15, 30, 125)
@@ -376,7 +363,12 @@ def mainLoop():
                                 if mouse[1] < 40:
                                     if mouse[1] > 0:
                                         action = "Restart"
-                                        areyousure()
+                                        screen.blit(restart, (0,0))
+                                        pygame.display.flip()
+                                        print ("Restarting...")
+                                        #Put scripts to be ran on shutdown here
+                                        pygame.quit()
+                                        quit()
                         if mouse[0] < 320:
                             if mouse[0] > 280:
                                 if mouse[1] < 480:
@@ -421,33 +413,24 @@ def mainLoop():
 
 def startup():
     global aboutopened
-    landen = parser.get('Landscape', 'enabled')
-    if landen == "True":
-        #Put landscape screen settings here
-        print ("Landscape is on, but not yet implemented.")
-        landen = "False" #To make sure the user gets some sort of experience
-    if landen == "False":
-        screen.blit(bg, (1, 1))
-        screen.blit(tskbar, (0,440))
-        screen.blit(tskbar, (0,0))
-        if aboutopened:
-            screen.blit(close, (280,0))
-        if not aboutopened:
-            screen.blit(sdicon, (280,0))
-        screen.blit(logo, (288,448))
-        screen.blit(menu, (0,440))
-        screen.blit(respring, (240,0))
-        screen.blit(rotate, (240,440))
-        screen.blit(dbtb, (0,0))
-        display_text(time,black,35,50,440)
-        pygame.display.flip()
+    screen.blit(bg, (1, 1))
+    screen.blit(tskbar, (0,440))
+    screen.blit(tskbar, (0,0))
+    if aboutopened:
+        screen.blit(close, (280,0))
+    if not aboutopened:
+        screen.blit(sdicon, (280,0))
+    screen.blit(logo, (288,448))
+    screen.blit(menu, (0,440))
+    screen.blit(respring, (240,0))
+    screen.blit(dbtb, (0,0))
+    display_text(time,black,35,50,440)
+    pygame.display.flip()
     # Create stuff to log
-    print ("Current Platform: ", sys.platform)
-    print ("Current Revision: ", currev)
-    print ("Pygame Version", pygame.ver)
+    if not runningBootPy:
+        print ("Current Platform: ", sys.platform)
+        print ("Current Revision: ", currev)
+        print ("Pygame Version", pygame.ver)
     mainLoop()
 
-
-# Changing to landccape mode:
-# parser.set('landscape', 'enabled', 'True')
 startup()

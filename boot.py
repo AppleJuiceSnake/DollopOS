@@ -36,6 +36,7 @@ def start():
         print(process.communicate()[0])
         if process.communicate()[0] == "Restarting...":
             global restarted
+            logg.close()
             restarted = True
             process.kill()
             start()
